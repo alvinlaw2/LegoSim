@@ -1,6 +1,6 @@
 #Turtle graphics game
 import turtle
-import tkinter as Tk
+import Tkinter as Tk
 import time
 """Set up screen"""
 print("Welcome to F1 Race Car robot by YAHOZA\nThis current robot is a prototype and may not be used as the final version\n ..::WARNING::.. THIS GAME IS IN ALPHA V.0.2")
@@ -26,7 +26,7 @@ borderpen.hideturtle()
 player = turtle.Turtle()
 player.color("yellow")
 player.shape("triangle")
-player.shapesize(0.5,0.5)
+player.shapesize(1,0.5)
 player.penup()
 player.speed(0)
 
@@ -54,10 +54,10 @@ def decel():
 
 """Using "WASD" KeyBindings control"""
 turtle.listen()
-turtle.onkey(TurnLeft, "a")
-turtle.onkey(TurnRight, "d")
-turtle.onkey(IncreaseSpeed, "w")
-turtle.onkey(decel, "s")
+turtle.onkey(TurnLeft, "Left")
+turtle.onkey(TurnRight, "Right")
+turtle.onkey(IncreaseSpeed, "Up")
+turtle.onkey(decel, "Down")
 
 
 
@@ -68,11 +68,14 @@ while True:
         player.right(180)
     if player.ycor()> 400 or player.ycor() < -400:
         player.right(180)
-    #Force player to decrease back to speed 1 when exceed or hit speed 20
-    if speed >=10:
+    #Force player to decrease back to speed 1 when exceed or hit speed 10
+    if speed >10:
         speed -= 9
         print("WOAH WOAH, hold your horses, your engine is not gonna last")
         print("The current speed is")
         print(speed)
+    elif speed <-4:
+        speed +=1
+        print("You can't reverse that quickly")
     
 delay = raw_input("Press Enter to finish")
